@@ -17,9 +17,9 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TaskService implements ITaskService {
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    private TaskMapper taskMapper;
+    private final TaskMapper taskMapper;
 
     @Override
     public List<TaskDto> getAllTasks() {

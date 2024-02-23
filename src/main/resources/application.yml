@@ -1,1 +1,17 @@
-
+server:
+  port: 8080
+spring:
+  profiles:
+    active: ${SPRING_PROFILE:default}
+  datasource:
+    url: jdbc:mariadb://${DB_HOST}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: ${SQL_CREATE_MODE:none}
+      show-sql: ${SHOW_SQL:false}
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
