@@ -12,9 +12,9 @@ public record CreateTaskDto(
         @Size(min = 3, max = 255)
         String description,
         @JsonFormat(pattern = "dd-MM-yyyy")
-        @NotNull @FutureOrPresent
+        @FutureOrPresent
         LocalDate dueDate,
         @JsonFormat(shape = JsonFormat.Shape.STRING)
-        @Pattern(regexp = "PENDING|COMPLETED")
+        @NotNull
         TaskStatus status
 ) {}

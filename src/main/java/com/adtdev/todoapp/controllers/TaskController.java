@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "tasks")
+@CrossOrigin(value = "*")
 @RequiredArgsConstructor
 public class TaskController {
     private final ITaskService taskService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<TaskDto> getAllTasks(@RequestParam(required = false) @Valid PageRequestDto request) {
-        if (request != null) {
-            return taskService.getTasksInPage(request);
+    public Iterable<TaskDto> getAllTasks(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer perPage
+    ) {
+        if (page != null || perPage != null) {
+            return taskService.getTasksInPage(new PageRequestDto(page, perPage));
         }
 
         return taskService.getAllTasks();

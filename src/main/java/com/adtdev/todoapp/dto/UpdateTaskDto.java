@@ -15,6 +15,5 @@ public record UpdateTaskDto(
         @FutureOrPresent
         LocalDate dueDate,
         @JsonFormat(shape = JsonFormat.Shape.STRING)
-        @Pattern(regexp = "PENDING|COMPLETED")
         TaskStatus status
 ) {}
