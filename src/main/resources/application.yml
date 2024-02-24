@@ -11,7 +11,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: ${SQL_CREATE_MODE:none}
-      show-sql: ${SHOW_SQL:false}
     properties:
       hibernate:
+        show-sql: ${SHOW_SQL:false}
         dialect: org.hibernate.dialect.MySQLDialect

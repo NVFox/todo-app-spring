@@ -18,9 +18,12 @@ public class TaskController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Iterable<TaskDto> getAllTasks(@RequestParam(required = false) @Valid PageRequestDto request) {
-        if (request != null) {
-            return taskService.getTasksInPage(request);
+    public Iterable<TaskDto> getAllTasks(
+            @RequestParam(required = false) Integer page,
+            @RequestParam(required = false) Integer perPage
+    ) {
+        if (page != null || perPage != null) {
+            return taskService.getTasksInPage(new PageRequestDto(page, perPage));
         }
 
         return taskService.getAllTasks();

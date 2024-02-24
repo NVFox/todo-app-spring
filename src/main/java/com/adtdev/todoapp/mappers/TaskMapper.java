@@ -4,9 +4,7 @@ import com.adtdev.todoapp.dto.CreateTaskDto;
 import com.adtdev.todoapp.dto.TaskDto;
 import com.adtdev.todoapp.dto.UpdateTaskDto;
 import com.adtdev.todoapp.entities.Task;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -24,5 +22,8 @@ public interface TaskMapper {
     Task createTaskDtoToTask(CreateTaskDto dto);
 
     @Mapping(target = "id", ignore = true)
+    @BeanMapping(
+            nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE
+    )
     Task updateTaskWithDto(UpdateTaskDto dto, @MappingTarget Task task);
 }
