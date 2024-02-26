@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @RestControllerAdvice
 public class TaskExceptionHandler {
@@ -53,6 +50,17 @@ public class TaskExceptionHandler {
                 "Incorrect Param Type",
                 "Argument Error",
                 List.of("Use the correct type for " + Objects.requireNonNull(e.getPropertyName()))
+        );
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse<String> noSuchElementExceptionHandler(NoSuchElementException e) {
+        return new ErrorResponse<>(
+                HttpStatus.NOT_FOUND,
+                "Element Not Found",
+                "NotFound Error",
+                List.of("Element has not been found")
         );
     }
 }
