@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "tasks")
+@CrossOrigin(value = "*")
 @RequiredArgsConstructor
 public class TaskController {
     private final ITaskService taskService;
